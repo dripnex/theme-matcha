@@ -1,0 +1,7 @@
+{
+  "id": "theme-matcha",
+  "name": "Matcha",
+  "version": "0.1.0",
+  "description": "Green-tea paper. Calm reading.",
+  "main": "dist/index.js"
+}
