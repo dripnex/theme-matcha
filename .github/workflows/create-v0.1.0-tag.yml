@@ -1,0 +1,26 @@
+name: create-v0.1.0-tag
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Create v0.1.0 tag on theme commit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          TARGET='9e582b2a37b4388c7044a4673ac23dc9cf9c4be0'
+          if gh api repos/${{ github.repository }}/git/ref/tags/v0.1.0 >/dev/null 2>&1; then
+            echo 'v0.1.0 already exists'
+            exit 0
+          fi
+          gh api -X POST repos/${{ github.repository }}/git/refs \
+            -f ref='refs/tags/v0.1.0' \
+            -f sha="$TARGET"
+          echo 'created refs/tags/v0.1.0 ->' "$TARGET"
