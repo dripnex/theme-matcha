@@ -35,7 +35,7 @@ const TOKENS = {
 module.exports = {
   id: 'theme-matcha',
   name: 'Matcha',
-  version: '0.1.0',
+  version: '0.1.1',
   description: 'Green-tea paper. Calm reading.',
 
   activate(context) {
